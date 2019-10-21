@@ -1,0 +1,7 @@
+package main
+
+import main.scala.spark.temperature.ProcessTemperatureData._
+
+object HistoricalDataUnificationAndProcessing extends App {
+  
+}

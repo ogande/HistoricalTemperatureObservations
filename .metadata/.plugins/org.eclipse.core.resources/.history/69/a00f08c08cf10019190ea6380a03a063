@@ -1,0 +1,23 @@
+package main.scala.utilities
+
+import sys.process._
+import java.net.URL
+import java.io.File
+import org.apache.log4j._
+import org.apache.spark.sql.functions.{col, lit}
+
+class DownloadUitlity {
+  // Description: Downloads the file with the given URL
+// Parameters: path to be downloaded of String type
+// Return type: Any - As it is having an exception hanlding, the super type of all the types is Any
+def downloadFromGivenURL(urlToBeDownloaded:String) = {
+  try{
+    scalaLogger.log.info("Going to download the data from the given URL")
+    new URL(urlToBeDownloaded) #> new File(urlToBeDownloaded.split("/").last) !!
+  }
+  catch{
+    case e:Exception => println("Exception occured in the method... " +  getMethodName)
+                       scalaLogger.log.error("failed to download from the given URL")
+  }
+}
+}

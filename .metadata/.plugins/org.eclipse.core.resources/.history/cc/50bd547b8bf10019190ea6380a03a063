@@ -1,0 +1,5 @@
+package stockholm.weather.data.main
+
+object Temeperature extends App {
+  
+}

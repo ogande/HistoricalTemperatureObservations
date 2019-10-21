@@ -1,0 +1,5 @@
+package main.scala.schema.barometer
+
+//Schema for the 1862 to 1937 input data
+case class BarometerDataSchema1862To2017(year:String, month:String, day:String, mAirPressure:String,
+    nAirPressure:String, eAirPressure:String)

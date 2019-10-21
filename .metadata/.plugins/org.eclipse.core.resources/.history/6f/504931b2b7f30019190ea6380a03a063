@@ -1,0 +1,3 @@
+package main.scala.schema.temperature
+
+case class TemperatureSchema1756To1858(year:Integer, month:Integer, day:Integer,morning:String, noon:String,evening:String)

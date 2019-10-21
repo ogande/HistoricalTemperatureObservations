@@ -1,0 +1,10 @@
+package main.scala.queries.barometer
+
+import main.resources.SparkInstance
+
+object BarometerQueries {
+  val barometerData = SparkInstance.spark.read.format("parquet").load("file:/databricks/driver/BarometerData/")
+  barometerData.createOrReplaceTempView("BAROMETERDATA")
+  val toatlCountOfBarometerData = SparkInstance.spark.sql("select count(*) from BAROMETERDATA")
+  println(toatlCountOfBarometerData)
+}

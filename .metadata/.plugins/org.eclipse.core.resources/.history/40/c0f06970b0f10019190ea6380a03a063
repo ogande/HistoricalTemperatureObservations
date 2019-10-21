@@ -1,0 +1,24 @@
+package main.scala.utilities
+
+//imports required
+import sys.process._ // imported this for #>
+import java.net.URL
+import java.io.File
+
+//Downoad utility class - used for downloading the files from the given URL
+class DownloadUitlity {
+
+// Description: Downloads the file with the given URL
+// Parameters: path to be downloaded of String type
+// Return type: Any - As it is having an exception hanlding, the super type of all the types is Any
+def downloadFromGivenURL(urlToBeDownloaded:String) = {
+  try{
+    scalaLogger.log.info("Going to download the data from the given URL")
+    new URL(urlToBeDownloaded) #> new File(urlToBeDownloaded.split("/").last) !!
+  }
+  catch{
+    case e:Exception => println("Exception occured in the method... " +  scalaLogger.getMethodName)
+                       scalaLogger.log.error("failed to download from the given URL")
+  }
+}
+}

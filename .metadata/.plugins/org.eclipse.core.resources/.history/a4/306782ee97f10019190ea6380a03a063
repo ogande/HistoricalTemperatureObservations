@@ -1,0 +1,13 @@
+package main.scala.utilities.pressure
+
+import main.scala.utilities
+
+//Defining a class for the inches conversion to hpa 
+class ToHpa(data:String) {
+  def convert = doublePrecision((data.toDouble/10.toDouble)*33.86389.toDouble)
+}
+
+// Description: implicit method for converstion of the inch from 0.1* mm into inches
+// Parameters: String
+// Return Type: String
+implicit def swedishInchtoHpaConversion(si:String) = new ToHpa(si)

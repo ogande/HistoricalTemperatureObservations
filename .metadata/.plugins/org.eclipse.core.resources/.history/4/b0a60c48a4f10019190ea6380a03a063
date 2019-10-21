@@ -1,0 +1,42 @@
+package main.scala.spark.temperature
+
+//imports required
+import main.scala.utilities.DownloadUitlity
+import main.scala.utilities.scalaLogger
+
+//Defining an object to get the temperature data
+object GetTemperatureData {
+  
+ private[this] val temperatureData = new DownloadUitlity // Creating a utility instance for downloading the barometer data 
+  
+  // Description: metthod to download raw temperature data
+  // Parameters : None
+  // Return type: Unit
+  def downloadTemperatureData = {
+    temperatureData.downloadFromGivenURL("https://bolin.su.se/data/stockholm/files/stockholm-historical-weather-observations-2017/temperature/daily/raw/stockholm_daily_temp_obs_1756_1858_t1t2t3.txt")
+    temperatureData.downloadFromGivenURL("https://bolin.su.se/data/stockholm/files/stockholm-historical-weather-observations-2017/temperature/daily/raw/stockholm_daily_temp_obs_1859_1960_t1t2t3txtn.txt")
+    temperatureData.downloadFromGivenURL("https://bolin.su.se/data/stockholm/files/stockholm-historical-weather-observations-2017/temperature/daily/raw/stockholm_daily_temp_obs_1961_2012_t1t2t3txtntm.txt")
+    temperatureData.downloadFromGivenURL("https://bolin.su.se/data/stockholm/files/stockholm-historical-weather-observations-2017/temperature/daily/raw/stockholm_daily_temp_obs_2013_2017_t1t2t3txtntm.txt")
+    temperatureData.downloadFromGivenURL("https://bolin.su.se/data/stockholm/files/stockholm-historical-weather-observations-2017/temperature/daily/raw/stockholmA_daily_temp_obs_2013_2017_t1t2t3txtntm.txt")
+  }  
+ 
+  // Description: Generation of AVRO file for 1756 to 1858 temperature raw data
+  // Parameters: path of the file of String type
+  // Return type: Unit - nothing but void, in scala it is Unit
+  def generateAVROFileFor1756To1858(inputPath:String) = {
+    try{
+      val inputRDD = sc.textFile(inputPath) //OP Creating RDD with the given input path, used sc.textFile instead of spark.read.text, which creates DF
+      if(inputRDD.first.length == 34){
+          val data1756To1858 = inputRDD.map(line => Format1756To1858(line.substring(1,5).trim.toInt, line.substring(7,9).trim.toInt,line.substring(11,13).trim.toInt,line.substring(15,21).trim,line.substring(22,27).trim,line.substring(29,34).trim)).toDF
+          data1756To1858.coalesce(1).write.format("avro").mode(SaveMode.Append).save("file:/databricks/driver/TemperatureData/1756_1858/")
+        }
+      else
+      {
+        scalaLogger.log.info("Going to download the data from the given URL")
+         println("hello1")
+      }
+    }catch {
+      case e:Exception => scalaLogger.log.error("error occured while processing 1756 to 1858 file")
+    }
+  }
+}

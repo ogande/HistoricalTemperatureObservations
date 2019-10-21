@@ -1,0 +1,21 @@
+package main.scala.utilities
+
+//imports required
+import org.apache.spark.sql.functions.{col, lit}
+
+object custom {
+  // Description: DoublePrecision method to have two digits after the decimal point
+// Parameters: in Double
+// Return type: String
+def doublePrecision(in:Double):String = f"$in%2.2f"
+
+//Description : Unifies the columns that are required for the given table
+//Parameters: column names of the given table in String and also List of total columns that we are expecting as String
+//Return type: List[org.apache.spark.sql.Column], which may have value if the column already exists or null
+def unifiedColumns(availableColumns:List[String],totalColumns:List[String]) = {
+  totalColumns.map(clm => clm match{
+    case c if availableColumns.contains(clm) => col(c)
+    case _ => lit(null).as(clm)
+  })
+}
+}

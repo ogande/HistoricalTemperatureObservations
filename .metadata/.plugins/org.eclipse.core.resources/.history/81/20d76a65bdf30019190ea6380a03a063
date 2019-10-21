@@ -1,0 +1,8 @@
+package main.scala.test.temperature
+
+// Defining a class to write the test cases to test the temperature data
+class TemperatureTestCases {
+    
+  def countMatching:Boolean = {true} // Count matching before after processing
+  def countMatchingOfAGivenyear(year:Int):Boolean = {true} // count validation of a given year's data
+}

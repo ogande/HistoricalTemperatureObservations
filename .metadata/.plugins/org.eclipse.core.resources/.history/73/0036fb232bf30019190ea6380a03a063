@@ -1,0 +1,5 @@
+package main.scala.test.barometer
+
+class BarometerTestCases {
+  
+}

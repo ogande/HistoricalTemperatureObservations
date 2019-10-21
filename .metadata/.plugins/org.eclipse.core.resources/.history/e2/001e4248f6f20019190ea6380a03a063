@@ -1,0 +1,10 @@
+package main.scala.utilities.pressure
+
+import main.scala.utilities.custom
+
+//Defining a class for the inches conversion to hpa 
+class ToHpa(data:String) {
+  // Description // OP
+  def convert = custom.doublePrecision((data.toDouble/10.toDouble)*33.86389.toDouble)
+  def convertFromInch = custom.doublePrecision(data.toDouble*33.86389.toDouble)
+}

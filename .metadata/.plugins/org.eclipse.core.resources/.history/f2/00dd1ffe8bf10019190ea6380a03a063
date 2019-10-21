@@ -1,0 +1,5 @@
+package main.scala.utilities
+
+class DownloadFromGivenURL {
+  
+}

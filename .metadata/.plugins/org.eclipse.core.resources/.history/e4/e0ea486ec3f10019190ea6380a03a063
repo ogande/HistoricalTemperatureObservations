@@ -1,0 +1,17 @@
+package main.resources
+
+import org.apache.spark.SparkConf
+import org.apache.spark.SparkContext
+import org.apache.spark.sql.SparkSession
+
+object SparkInstance {
+  val conf:SparkConf = new SparkConf().setAppName("Stockholm Weather Data Processing").setMaster("local")
+	val sc:SparkContext = new SparkContext(conf)
+ 
+  val sqlContext = new org.apache.spark.sql.SQLContext(sc)
+  import sqlContext.implicits._
+
+ val spark = SparkSession
+				.builder
+				.getOrCreate()
+}

@@ -1,0 +1,13 @@
+package main.scala.spark.temperature
+
+import main.scala.utilities.DownloadUitlity
+
+object GetBarometerData {
+  
+ private[this] val  barometerData = new DownloadUitlity
+  
+  def downloadBarometerData = {
+    barometerData.downloadFromGivenURL("")
+  }
+  
+}

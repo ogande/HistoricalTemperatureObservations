@@ -1,0 +1,5 @@
+package main.scala.schema.barometer
+
+//Defining a case class for barometer data schema
+case class BarometerDataSchema(year:String, month:String, day:String, mBaro:String, mBaroTemp:String,
+    nBaro:String, nBaroTemp:String, eBaro:String, eBaroTemp:String)

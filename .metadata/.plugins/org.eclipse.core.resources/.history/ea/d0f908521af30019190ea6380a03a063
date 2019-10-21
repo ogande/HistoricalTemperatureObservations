@@ -1,0 +1,10 @@
+package main
+
+import main.scala.spark.temperature.ProcessTemperatureData
+
+object HistoricalDataUnificationAndProcessing extends App {
+  
+  ProcessTemperatureData.From1756To1858("","parquet")
+  ProcessTemperatureData.From1859To1960("", "")
+  
+}

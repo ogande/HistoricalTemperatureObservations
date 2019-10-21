@@ -1,0 +1,11 @@
+package main.scala.utilities
+
+import sys.process._
+import java.net.URL
+import java.io.File
+import org.apache.log4j._
+import org.apache.spark.sql.functions.{col, lit}
+
+class DownloadFromGivenURL {
+  
+}

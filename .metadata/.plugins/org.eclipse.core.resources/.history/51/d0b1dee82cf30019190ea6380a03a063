@@ -1,0 +1,10 @@
+package main.scala.queries.temperature
+
+object TemperatureQueries {
+  
+  //Defining a sample table for querying..
+  val temperatureData = SparkInstance.spark.read.format("parquet").load("file:/databricks/driver/TemperatureData/")
+  temperatureData.createOrReplaceTempView("TEMPERATUREDATA")
+  val toatlCountOfTemperatureData = SparkInstance.spark.sql("select count(*) from TEMPERATUREDATA")
+  println(toatlCountOfTemperatureData)
+}

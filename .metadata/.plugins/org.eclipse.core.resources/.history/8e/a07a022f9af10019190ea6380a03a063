@@ -1,0 +1,5 @@
+package main.scala.schema.temperature
+
+class TemperatureSchema1859To1960 {
+  
+}

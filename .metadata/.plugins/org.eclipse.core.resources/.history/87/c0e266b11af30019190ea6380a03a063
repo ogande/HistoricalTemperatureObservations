@@ -1,0 +1,12 @@
+package main
+
+import main.scala.spark.temperature._
+
+object HistoricalDataUnificationAndProcessing extends App {
+  
+  GetTemperatureData.downloadTemperatureData
+  ProcessTemperatureData.From1756To1858("file:/databricks/driver/stockholm_daily_temp_obs_1756_1858_t1t2t3.txt","parquet")
+  ProcessTemperatureData.From1859To1960("file:/databricks/driver/stockholm_daily_temp_obs_1859_1960_t1t2t3txtn.txt", "parquet")
+  ProcessTemperatureData
+  
+}

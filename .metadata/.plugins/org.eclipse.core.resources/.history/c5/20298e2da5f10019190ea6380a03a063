@@ -1,0 +1,11 @@
+package main.resources
+
+import org.apache.spark.sql.SparkSession
+
+object SparkInstance {
+  
+  val spark = SparkSession
+				.builder
+				.appName("Stockholm Weather Data Processing")
+				.getOrCreate()
+}

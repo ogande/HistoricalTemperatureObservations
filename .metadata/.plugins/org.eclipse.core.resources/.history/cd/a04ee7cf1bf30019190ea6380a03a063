@@ -1,0 +1,28 @@
+package main
+
+import main.scala.spark.temperature._
+import main.scala.spark.barometer._
+
+object HistoricalDataUnificationAndProcessing extends App {
+  
+  // Get Temperature data
+  GetTemperatureData.downloadTemperatureData
+  
+  // clean/format(e.g. double precision) and store in the given format
+  ProcessTemperatureData.From1756To1858("file:/databricks/driver/stockholm_daily_temp_obs_1756_1858_t1t2t3.txt","avro")
+  ProcessTemperatureData.From1859To1960("file:/databricks/driver/stockholm_daily_temp_obs_1859_1960_t1t2t3txtn.txt", "avro")
+  ProcessTemperatureData.From1961To2017("file:/databricks/driver/stockholm_daily_temp_obs_1961_2012_t1t2t3txtntm.txt", "avro")
+  ProcessTemperatureData.From1961To2017("file:/databricks/driver/stockholm_daily_temp_obs_2013_2017_t1t2t3txtntm.txt", "avro")
+  ProcessTemperatureData.From1961To2017("file:/databricks/driver/stockholmA_daily_temp_obs_2013_2017_t1t2t3txtntm.txt","avro")
+  
+  // Unify the whole data into one file, so that it will be easy to query whatever data is required.
+  ProcessTemperatureData.UnifyingAllTemperatureData("avro")
+  
+  // Get Barometer data
+  GetBarometerData.downloadBarometerData
+  
+  // clean/format(e.g. double precision and converting into one unique measurement e.g. all data will be in hpa units) and store in the given format
+  ProcessBarometerData.From1756To1858("file:/databricks/driver/stockholm_barometer_1756_1858.txt", "parquet")
+  
+  
+}

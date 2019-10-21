@@ -1,0 +1,7 @@
+package main.scala.utilities
+
+import org.apache.log4j._
+
+object scalaLogger extends Serializable { 
+   @transient lazy val log = Logger.getLogger(getClass.getName) //Getting log instance for logging the activities, used during debugging
+}
